@@ -1,0 +1,9 @@
+﻿<Window x:Class="BillingSystem.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterScreen"  Style="{StaticResource CustomWindowStyle}"  WindowState="Normal" Title="AdminWindow">
+    <Grid>
+        <Label Content="Hello" HorizontalAlignment="Left" Margin="123,122,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

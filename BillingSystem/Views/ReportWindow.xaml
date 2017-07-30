@@ -1,0 +1,7 @@
+﻿<Window x:Class="BillingSystem.ReportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ReportWindow" WindowStartupLocation="CenterScreen"  Style="{StaticResource CustomWindowStyle}"  WindowState="Normal">
+   
+
+</Window>
