@@ -29,7 +29,7 @@ namespace Utility.DatabaseHelper
         {
             //  CreateTable();
             _databaseDirectory = GetDatabaseDirecotry();
-            
+
             //if (!Directory.Exists(_databaseDirectory))
             //{
             //    Directory.CreateDirectory(databaseDirectory);
@@ -75,7 +75,7 @@ namespace Utility.DatabaseHelper
         //    }
 
         //}
-        
+
         /// <summary>
         /// Returns single result
         /// </summary>
@@ -176,17 +176,17 @@ namespace Utility.DatabaseHelper
         /// <returns></returns>
         public SQLiteDataReader ExecuteReader(string query)
         {
-            SQLiteDataReader objDR=null;
+            SQLiteDataReader objDR = null;
 
             try
             {
-                using (_objSQLiteConnection=new SQLiteConnection(ConnectionString))
+                using (_objSQLiteConnection = new SQLiteConnection(ConnectionString))
                 {
                     _objSQLiteConnection.Open();
                     SQLiteCommand objCmd = new SQLiteCommand(query, _objSQLiteConnection);
                     objDR = objCmd.ExecuteReader();
                 }
-              
+
 
             }
             catch (Exception ex)
@@ -203,6 +203,59 @@ namespace Utility.DatabaseHelper
         }
 
         /// <summary>
+        /// Bulk inserts data.In case of exception transaction is rolled back
+        /// </summary>
+        /// <param name="lstQueries"></param>
+        /// <returns></returns>
+        public int BulkInsert(List<string> lstQueries)
+        {
+            var result = lstQueries.Count;
+            StringBuilder strBuilder = new StringBuilder();
+            try
+            {
+                using (_objSQLiteConnection = new SQLiteConnection(ConnectionString))
+                {
+                    _objSQLiteConnection.Open();
+                    using (SQLiteCommand objCmd = new SQLiteCommand(_objSQLiteConnection))
+                    {
+                        foreach (var query in lstQueries)
+                        {
+                            strBuilder.Append(query);
+                        }
+                        using (var transaction = _objSQLiteConnection.BeginTransaction())
+                        {
+                            try
+                            {
+                                objCmd.CommandText = strBuilder.ToString();
+                                result = objCmd.ExecuteNonQuery();
+                                transaction.Commit();
+                            }
+                            catch (Exception ex)
+                            {
+                                transaction.Rollback();
+                                throw ex;
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            finally
+            {
+                _objSQLiteConnection.Close();
+            }
+            return result;
+        }
+
+        /// <summary>
         /// Returns database directory
         /// </summary>
         /// <returns></returns>
@@ -213,7 +266,7 @@ namespace Utility.DatabaseHelper
 
         private void CreateTable()
         {
-            
+
         }
     }
 }

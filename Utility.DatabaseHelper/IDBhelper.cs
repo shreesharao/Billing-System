@@ -12,6 +12,7 @@ namespace Utility.DatabaseHelper
         DataSet ExecuteDataset(string query);
         object ExecuteScalar(string query);
         int ExecuteNonQuery(string query);
+        int BulkInsert(List<string> queries);
         //T ExecuteReader(string query);
     }
 }

@@ -82,6 +82,22 @@ namespace Utility.DatabaseHelper
             return retValue;
         }
 
+        public int BulkInsert(List<string> queries)
+        {
+            var result = 0;
+            try
+            {
+                _iDBhelper.BulkInsert(queries);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+           
+
+            return result;
+        }
+
         private string GetDatabaseTypeFromConfig()
         {
             var type = ConfigurationManager.AppSettings["DB"];
