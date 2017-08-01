@@ -42,9 +42,8 @@ namespace BillingSystem
 
         private void Administraton_button_Click(object sender, RoutedEventArgs e)
         {
-            AdminWindow objMainWindow = new AdminWindow();
-
-            objMainWindow.ShowDialog();
+            AdminWindow objAdminWindow = new AdminWindow();
+            objAdminWindow.ShowDialog();
         }
 
         private void Billing_Button_Click(object sender, RoutedEventArgs e)

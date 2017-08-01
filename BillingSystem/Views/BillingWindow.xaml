@@ -36,7 +36,7 @@
                 </Grid.RowDefinitions>
 
 
-                <Label Content="Enter Item to search :" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="14" Height="26" Width="158"  />
+                <!--<Label Content="Enter Item to search :" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="14" Height="26" Width="158"  />-->
             </Grid>
 
         </DockPanel>

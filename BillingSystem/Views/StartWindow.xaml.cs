@@ -21,7 +21,6 @@ namespace BillingSystem
     {
         public StartWindow()
         {
-            this.Cursor = Cursors.Wait;
             InitializeComponent();
             this.Cursor = Cursors.Arrow;
         }
@@ -31,15 +30,14 @@ namespace BillingSystem
             try
             {
                 this.Cursor = Cursors.Wait;
-                MainOptionsWindow objLoginWindow = new MainOptionsWindow();
-                objLoginWindow.ShowDialog();
+                MainOptionsWindow objMainOptionsWindow = new MainOptionsWindow();
+                objMainOptionsWindow.ShowDialog();
                 //objLoginWindow = null;
                 //MainWindow objMainWindow = new MainWindow();
                 //objMainWindow.ShowDialog();
                 //objMainWindow = null;
                 this.Close();
                 this.Dispatcher.InvokeShutdown();
-                this.Cursor = Cursors.Arrow;
             }
             catch(Exception)
             {

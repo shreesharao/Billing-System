@@ -6,7 +6,7 @@
         WindowStartupLocation="CenterScreen"  Style="{StaticResource CustomWindowStyle}"  WindowState="Normal">
     <Grid >
         <DockPanel >
-            <Grid DockPanel.Dock="Top" Height="50"    >
+            <Grid DockPanel.Dock="Top" Height="50">
                 <Border BorderThickness="2">
                     <Border.BorderBrush>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
