@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("BillingSystem")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Daimler AG")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("BillingSystem")]
-[assembly: AssemblyCopyright("Copyright © Daimler AG 2017")]
+[assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
