@@ -11,24 +11,17 @@ namespace Utility.DatabaseHelper
     public class DatabaseGateway
     {
         private IDBhelper _iDBhelper = null;
-        private static LogGateway _logGateway = null;
 
-        public DatabaseGateway()
+        public DatabaseGateway(string dbType)
         {
             try
             {
-                //get logger handler
-                _logGateway = new LogGateway(this.GetType());
-
-                var dbType = GetDatabaseTypeFromConfig();
-                _logGateway.Info(string.Format("{0}:{1}","Database type",dbType));
-
                 //get the database handler based on the type of database
                 _iDBhelper = DBHelperFactory.GetDBHelper(dbType);
             }
             catch (Exception ex)
             {
-                _logGateway.Error(ex);
+                throw ex;
             }
 
         }
@@ -38,12 +31,11 @@ namespace Utility.DatabaseHelper
             DataSet ds = null;
             try
             {
-                _logGateway.Info(string.Format("ExecuteDataset-Query recieved:{0}", query));
                 ds= _iDBhelper.ExecuteDataset(query);
             }
             catch (Exception ex)
             {
-                _logGateway.Error(ex);
+                throw ex;
             }
             return ds;
 
@@ -54,13 +46,13 @@ namespace Utility.DatabaseHelper
             T retValue = default(T);
             try
             {
-                _logGateway.Info(string.Format("ExecuteScalar-Query recieved:{0}", query));
+             
                 retValue = (T)_iDBhelper.ExecuteScalar(query);
                 return retValue;
             }
             catch (Exception ex)
             {
-                _logGateway.Error(ex);
+                throw ex;
             }
             return retValue;
 
@@ -72,12 +64,11 @@ namespace Utility.DatabaseHelper
             var retValue = -1;
             try
             {
-                _logGateway.Info(string.Format("ExecuteNonQuery-Query recieved:{0}", query));
                 retValue = _iDBhelper.ExecuteNonQuery(query);
             }
             catch (Exception ex)
             {
-                _logGateway.Error(ex);
+                throw ex;
             }
             return retValue;
         }
@@ -98,12 +89,7 @@ namespace Utility.DatabaseHelper
             return result;
         }
 
-        private string GetDatabaseTypeFromConfig()
-        {
-            var type = ConfigurationManager.AppSettings["DB"];
-
-            return type.ToString();
-        }
+        
 
 
     }

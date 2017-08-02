@@ -9,23 +9,23 @@ using Utility.PasswordManager;
 
 namespace BillingSystem.Data
 {
-    class UserDL
+   public class UserDL:BaseDL
     {
         #region Private variables
         bool isSuccess = false;
         int result = 0;
         DatabaseGateway _objDBGateway = null;
+        private string _dbType = string.Empty;
         #endregion
 
         public UserDL()
         {
-            _objDBGateway = new DatabaseGateway();
+            _dbType = base.GetDatabaseTypeFromConfig();
+            _objDBGateway = new DatabaseGateway(_dbType);
         }
         public bool Login(UserEntity entity)
         {
-
-
-            _objDBGateway = new DatabaseGateway();
+            _objDBGateway = new DatabaseGateway(_dbType);
             int result = 0;
 
             try
@@ -54,7 +54,7 @@ namespace BillingSystem.Data
         
         public bool CheckUserName(string username)
         {
-            _objDBGateway = new DatabaseGateway();
+            _objDBGateway = new DatabaseGateway(_dbType);
             int result = 0;
 
             try
@@ -82,7 +82,7 @@ namespace BillingSystem.Data
         }
         public int Register(UserEntity entity)
         {
-            _objDBGateway = new DatabaseGateway();
+            _objDBGateway = new DatabaseGateway(_dbType);
             int result = 0;
 
             try

@@ -14,6 +14,9 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using BillingSystem.ViewModel;
+
+
 namespace BillingSystem
 {
     /// <summary>
@@ -21,106 +24,24 @@ namespace BillingSystem
     /// </summary>
     public partial class BillingWindow : Window
     {
-        //public DateTime CurrentDateAndTime { get; set; }
-        //public event PropertyChangedEventHandler PropertyChanged;
+       private List<BillingViewModel> _dataSource = new List<BillingViewModel>();
+       private BillingViewModel _objBillingViewModel = null;
+       private double TotalPriceExclTax { get; set; }
+       private double TotalPriceInclTax { get; set; }
 
-
-        //ObservableCollection<billRow> itemRow;
-
-        ObservableCollection<BillingAtributes> dataSource = new ObservableCollection<BillingAtributes>();
-        
-        double TotalPriceExclTax{get;set;}
-        double TotalPriceInclTax{get;set;}
         public BillingWindow()
         {
 
             InitializeComponent();
             InitilializeItemstoDataTable();
-           // SearchItem_TextBoc.Text = "etem_43";
-            //(dataSheet_Grid.ItemsSource as DataView).Sort = "NAME_OF_COLUMN";
         }
 
         private void InitilializeItemstoDataTable()
         {
-            // dataSource.CollectionChanged+=dataSource_CollectionChanged;
-            //dataSheet_Grid.CellEditEnding+=dataSheet_Grid_CellEditEnding;
+            _objBillingViewModel = new BillingViewModel();
+            _dataSource= _objBillingViewModel.GetAllItems();
 
-            for (int i = 0; i < 10000; i++)
-            {
-                if (i < 10)
-                {
-                    if (i<10)
-                    dataSource.Add(new BillingAtributes()
-                    {
-                        dataSheet_SN = i,
-                        dataSheet_ID = i,
-                        dataSheet_MRP = 100,
-                        dataSheet_NAME = "Atem_" + i,
-                        dataSheet_Quantity = "0",
-                    });
-                 
-                 
-                }
-                if (i>10 && i < 20)
-                {
-                    dataSource.Add(new BillingAtributes()
-                    {
-                        dataSheet_SN = i,
-                        dataSheet_ID = i,
-                        dataSheet_MRP = 100,
-                        dataSheet_NAME = "Btem_" + i,
-                        dataSheet_Quantity = "0",
-                    });
-                }
-                if (i > 20 &&  i < 30)
-                {
-                    dataSource.Add(new BillingAtributes()
-                    {
-                        dataSheet_SN = i,
-                        dataSheet_ID = i,
-                        dataSheet_MRP = 100,
-                        dataSheet_NAME = "Ctem_" + i,
-                        dataSheet_Quantity = "0",
-                    });
-                }
-                if (i > 30 &&  i < 40)
-                {
-                    dataSource.Add(new BillingAtributes()
-                    {
-                        dataSheet_SN = i,
-                        dataSheet_ID = i,
-                        dataSheet_MRP = 100,
-                        dataSheet_NAME = "Dtem_" + i,
-                        dataSheet_Quantity = "0",
-                    });
-                }
-                if (i > 40 &&  i < 50)
-                {
-                    dataSource.Add(new BillingAtributes()
-                    {
-                        dataSheet_SN = i,
-                        dataSheet_ID = i,
-                        dataSheet_MRP = 100,
-                        dataSheet_NAME = "Etem_" + i,
-                        dataSheet_Quantity = "0",
-                    });
-                }
-                if (i > 50 &&  i < 60)
-                {
-                    dataSource.Add(new BillingAtributes()
-                    {
-                        dataSheet_SN = i,
-                        dataSheet_ID = i,
-                        dataSheet_MRP = 100,
-                        dataSheet_NAME = "Ftem_" + i,
-                        dataSheet_Quantity = "0",
-                    });
-                }
-
-
-            }
-            dataSource = new ObservableCollection<BillingAtributes>(dataSource.OrderBy(a => a.dataSheet_NAME));
-            dataSheet_Grid.ItemsSource = dataSource;
+            dataSheet_Grid.ItemsSource = _dataSource.OrderBy(a => a.dataSheet_NAME);
 
 
         }
@@ -150,25 +71,25 @@ namespace BillingSystem
         {
 
             double editedValue = 0;
-            int rowIndexDataSource=0;
-            for (int i = 0; i< dataSource.Count; i++)
+            int rowIndex_dataSource=0;
+            for (int i = 0; i< _dataSource.Count; i++)
             {
-             if (dataSource[i].dataSheet_ID == (Row.Item as BillingAtributes).dataSheet_ID)
+             if (_dataSource[i].dataSheet_ID == (Row.Item as BillingViewModel).dataSheet_ID)
               {
-                rowIndexDataSource = i;
+                rowIndex_dataSource = i;
                 break;
               }
             }
             if (double.TryParse(quant, out editedValue))
             {
 
-                //dataSource[(Row.Item as BillingAtributes).dataSheet_ID].dataSheet_Price = editedValue * (Row.Item as BillingAtributes).dataSheet_MRP;
+                //_dataSource[(Row.Item as BillingViewModel).dataSheet_ID].dataSheet_Price = editedValue * (Row.Item as BillingViewModel).dataSheet_MRP;
 
-                //dataSource[(Row.Item as BillingAtributes).dataSheet_ID].dataSheet_Quantity = editedValue.ToString();
+                //_dataSource[(Row.Item as BillingViewModel).dataSheet_ID].dataSheet_Quantity = editedValue.ToString();
 
-                dataSource[rowIndexDataSource].dataSheet_Price = editedValue * (Row.Item as BillingAtributes).dataSheet_MRP;
+                _dataSource[rowIndex_dataSource].dataSheet_Price = editedValue * (Row.Item as BillingViewModel).dataSheet_MRP;
 
-                dataSource[rowIndexDataSource].dataSheet_Quantity = editedValue.ToString();
+                _dataSource[rowIndex_dataSource].dataSheet_Quantity = editedValue.ToString();
 
                
 
@@ -176,17 +97,17 @@ namespace BillingSystem
             else
             {
                 MessageBox.Show("Invalid Entry", "Billing Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                dataSource[rowIndexDataSource].dataSheet_Quantity = "0";
-                dataSource[rowIndexDataSource].dataSheet_Price = 0;
+                _dataSource[rowIndex_dataSource].dataSheet_Quantity = "0";
+                _dataSource[rowIndex_dataSource].dataSheet_Price = 0;
             }
             dataSheet_Grid.ItemsSource = null;
-            dataSheet_Grid.ItemsSource = dataSource;
+            dataSheet_Grid.ItemsSource = _dataSource;
 
         }
 
         private void calculate_Total_Price()
         {
-            TotalPriceExclTax = dataSource.Where(x => x.dataSheet_Quantity != "0").Select(x => x.dataSheet_Price).Sum();
+            TotalPriceExclTax = _dataSource.Where(x => x.dataSheet_Quantity != "0").Select(x => x.dataSheet_Price).Sum();
         
         }
 
@@ -198,7 +119,7 @@ namespace BillingSystem
                 {
                     foreach (object item in dataSheet_Grid.Items)
                     {
-                        if ((item as BillingAtributes) != null && (((BillingAtributes)item).dataSheet_NAME.ToUpper().StartsWith(SearchItemName_TextBox.Text.ToUpper())))
+                        if ((item as BillingViewModel) != null && (((BillingViewModel)item).dataSheet_NAME.ToUpper().StartsWith(SearchItemName_TextBox.Text.ToUpper())))
                         {
                             dataSheet_Grid.ScrollIntoView(dataSheet_Grid.Items[dataSheet_Grid.Items.Count - 1]);
                             dataSheet_Grid.UpdateLayout();
@@ -212,7 +133,7 @@ namespace BillingSystem
 
 
                         }
-                        if ((item as BillingAtributes) != null && (((BillingAtributes)item).dataSheet_NAME.ToUpper().Equals(SearchItemName_TextBox.Text.ToUpper())))
+                        if ((item as BillingViewModel) != null && (((BillingViewModel)item).dataSheet_NAME.ToUpper().Equals(SearchItemName_TextBox.Text.ToUpper())))
                         {
                             dataSheet_Grid.ScrollIntoView(dataSheet_Grid.Items[dataSheet_Grid.Items.Count - 1]);
                             dataSheet_Grid.UpdateLayout();
@@ -241,18 +162,5 @@ namespace BillingSystem
 
 
     }
-    public class BillingAtributes
-    {
-        public int dataSheet_SN { get; set; }
-        public int dataSheet_ID { get; set; }
-        public string dataSheet_NAME { get; set; }
-        public double dataSheet_MRP { get; set; }
-        public string dataSheet_Quantity { get; set; }
-        public double dataSheet_Price { get; set; }
-        public BillingAtributes()
-        {
-            dataSheet_Price = 0;
-        }
-
-    }
+   
 }

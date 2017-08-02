@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminDL.cs" />
+    <Compile Include="BaseDL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SalesDL.cs" />
     <Compile Include="UserDL.cs" />
@@ -52,6 +54,10 @@
     <ProjectReference Include="..\Utility.DatabaseHelper\Utility.DatabaseHelper.csproj">
       <Project>{9e58ab8f-bbbd-49c2-8dbe-1e74cde5aa86}</Project>
       <Name>Utility.DatabaseHelper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utility.LogHelper\Utility.LogHelper.csproj">
+      <Project>{d45b19ce-2dc7-48d5-8585-84a22aeb20b7}</Project>
+      <Name>Utility.LogHelper</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utility.PasswordManager\Utility.PasswordManager.csproj">
       <Project>{9dadfc1a-6588-4ec3-ac51-dd6d9b627b1c}</Project>

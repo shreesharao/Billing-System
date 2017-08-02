@@ -12,7 +12,7 @@ namespace UnitTest.DatabaseHelperTest
         [TestMethod]
         public void CreateInstanceTest()
         {
-            DatabaseGateway objDatabaseGateway = new DatabaseGateway();
+            DatabaseGateway objDatabaseGateway = new DatabaseGateway("Utility.DatabaseHelper.SQLiteHelper");
             var items = objDatabaseGateway.ExecuteNonQuery("select * from TB_ITEMS");
             Assert.IsNotNull(items);
         }
@@ -21,7 +21,7 @@ namespace UnitTest.DatabaseHelperTest
         [TestMethod]
         public void BulkInsertTest()
         {
-            DatabaseGateway objDatabaseGateway = new DatabaseGateway();
+            DatabaseGateway objDatabaseGateway = new DatabaseGateway("Utility.DatabaseHelper.SQLiteHelper");
             List<string> lstQueries = new List<string>();
 
             for (int i = 0; i < 1000; i++)
