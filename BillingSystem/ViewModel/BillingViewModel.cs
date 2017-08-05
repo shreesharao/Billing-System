@@ -8,7 +8,7 @@ using BillingSystem.Data;
 
 namespace BillingSystem.ViewModel
 {
-    
+
     class BillingViewModel
     {
         private SalesDL _objSalesDL = null;
@@ -27,8 +27,18 @@ namespace BillingSystem.ViewModel
         public List<BillingViewModel> GetAllItems()
         {
             List<BillingViewModel> lst = new List<BillingViewModel>();
+            _objSalesDL = new SalesDL();
+
             DataSet ds = _objSalesDL.GetAllItems();
 
+            foreach (dynamic item in ds.Tables[0].Rows)
+            {
+                var obj = new BillingViewModel();
+                obj.dataSheet_ID = Convert.ToInt32(item["ItemId"]);
+                obj.dataSheet_NAME = item["ItemName"].ToString();
+                obj.dataSheet_Quantity = item["Quantity"].ToString();
+                lst.Add(obj);
+            }
 
             return lst;
 

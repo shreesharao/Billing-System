@@ -28,7 +28,7 @@ namespace BillingSystem.Data
 
             try
             {
-                var query = "SELECT * FROM TB_ITEMS as TI INNER JOIN TB_ITEM_DETAILS as TID  on TI.ItemId=TID.ItemId";
+                var query = "SELECT ItemId,ItemName,Quantity FROM TB_ITEMS";
                 ds=_objDatabaseGateway.ExecuteDataset(query);
             }
             catch (Exception ex)
