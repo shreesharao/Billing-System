@@ -8,7 +8,7 @@ using System.Data;
 using Utility.DatabaseHelper;
 using Utility.LogHelper;
 
-namespace BillingSystem.Data
+namespace BillingSystem.DAL
 {
     public class SalesDL:BaseDL
     {

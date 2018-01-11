@@ -7,8 +7,8 @@
     <ProjectGuid>{21E06E3C-5C00-45C1-BE76-5ABE37054D7B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BillingSystem.Data</RootNamespace>
-    <AssemblyName>BillingSystem.Data</AssemblyName>
+    <RootNamespace>BillingSystem.DAL</RootNamespace>
+    <AssemblyName>BillingSystem.DAL</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

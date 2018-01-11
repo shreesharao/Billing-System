@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unit Tests", "Unit Tests", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entities", "Entities", "{8161C819-EE93-4F62-B467-F19ECB79FB1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillingSystem.Data", "src\BillingSystem.Data\BillingSystem.Data.csproj", "{21E06E3C-5C00-45C1-BE76-5ABE37054D7B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillingSystem.DAL", "src\BillingSystem.Data\BillingSystem.DAL.csproj", "{21E06E3C-5C00-45C1-BE76-5ABE37054D7B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BillingSystem", "src\BillingSystem\BillingSystem.csproj", "{162C57AD-A644-45C8-A507-45B639D9AC3F}"
 EndProject

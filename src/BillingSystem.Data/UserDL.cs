@@ -7,7 +7,7 @@ using BillingSystem.Entities;
 using Utility.DatabaseHelper;
 using Utility.PasswordManager;
 
-namespace BillingSystem.Data
+namespace BillingSystem.DAL
 {
    public class UserDL:BaseDL
     {

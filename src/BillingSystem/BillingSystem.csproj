@@ -154,9 +154,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BillingSystem.Data\BillingSystem.Data.csproj">
+    <ProjectReference Include="..\BillingSystem.Data\BillingSystem.DAL.csproj">
       <Project>{21e06e3c-5c00-45c1-be76-5abe37054d7b}</Project>
-      <Name>BillingSystem.Data</Name>
+      <Name>BillingSystem.DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
